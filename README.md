@@ -1,4 +1,5 @@
-```void drawCard(double *index)
+```
+void drawCard(double *index)
 {
 	srand((unsigned)time(NULL));
 	int k = rand() % 52 ;
