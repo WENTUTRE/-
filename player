@@ -19,6 +19,6 @@ public:
 	string getName();
 	int getPoint();
 	string action();
-	
+	void compare(player);
 };
 #endif
