@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "Header.h"
 #include <iostream>
 using namespace std;
 
@@ -14,12 +14,12 @@ player::player(string name, int point)
 	this->point = point;
 }
 
-void player::setName(string)
+void player::setName(string name)
 {
 	this->name = name;
 }
 
-void player::setPoint(int)
+void player::setPoint(int point)
 {
 	this->point = point;
 }
@@ -36,7 +36,7 @@ int player::getPoint()
 
 string player::action()
 {
-	cout << "";
+	cout << "加牌?";
 
 	string a;
 
@@ -48,4 +48,12 @@ string player::action()
 		;
 	else
 		cout << "";
+}
+
+void player::compare(player player2)
+{
+	if (getPoint() > player2.getPoint())
+		cout << "Win";
+	else if (getPoint() <= player2.getPoint())
+		cout << "Lose";
 }
