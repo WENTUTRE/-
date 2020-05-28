@@ -1,3 +1,4 @@
+```
 #include <iostream>
 #include <vector>
 #include <ctime>
@@ -25,9 +26,9 @@ int main()
 		deck[i] = deck[k];
 		deck[k] = temp;
 	}
-	char enter;
-	double point1 = 0;
-	int i = 0;
+	
+	double point1 = 0; //分數
+	int i = 0;// 抽第幾張
 	cout << suits[deck[i] / 13] << ranks[deck[i] % 13] << endl;
 	double point[13] = { 1,2,3,4,5,6,7,8,9,10,0.5,0.5,0.5};
 	cout << point1 + point[deck[i] % 13] << endl;
@@ -35,3 +36,5 @@ int main()
 	system("pause");
 	return 0;
 }
+
+```
