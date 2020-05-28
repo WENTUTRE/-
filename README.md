@@ -1,63 +1,37 @@
-```
-void drawCard(double *index)
+#include <iostream>
+#include <vector>
+#include <ctime>
+#include <string> 
+using namespace std;
+
+
+string suits[4] = { "梅花", "紅心", "方塊", "黑桃" };
+string ranks[13] = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
+
+int main()
 {
-	srand((unsigned)time(NULL));
-	int k = rand() % 52 ;
-	switch (k/13)
+	vector<int> deck(52);
+
+
+	for (int i = 0; i < 52; i++)
+		deck[i] = i;
+
+
+	srand(time(0));
+	for (int i = 0; i < 52; i++)
 	{
-		case 0:
-			if(1 + k % 13==1)
-				cout << "黑桃" << 'A';
-			else if (1 + k % 13 == 11)
-				cout << "黑桃" << 'J';
-			else if (1 + k % 13 == 12)
-				cout << "黑桃" << 'Q' ;
-			else if (1 + k % 13 == 13)
-				cout << "黑桃" << 'K' ;
-			else
-				cout << "黑桃" << 1 + k % 13 ;
-			break;
-		case 1:
-			if (1 + k % 13 == 1)
-				cout << "梅花" << 'A' ;
-			else if (1 + k % 13 == 11)
-				cout << "梅花" << 'J' ;
-			else if (1 + k % 13 == 12)
-				cout << "梅花" << 'Q' ;
-			else if (1 + k % 13 == 13)
-				cout << "梅花" << 'K' ;
-			else
-				cout << "梅花" << 1 + k % 13 ;
-			break;
-		case 2:
-			if (1 + k % 13 == 1)
-				cout << "紅心" << 'A' ;
-			else if (1 + k % 13 == 11)
-				cout << "紅心" << 'J' ;
-			else if (1 + k % 13 == 12)
-				cout << "紅心" << 'Q' ;
-			else if (1 + k % 13 == 13)
-				cout << "紅心" << 'K' ;
-			else
-				cout << "紅心" << 1 + k % 13 ;
-			break;
-		case 3:
-			if (1 + k % 13 == 1)
-				cout << "方塊" << 'A' ;
-			else if (1 + k % 13 == 11)
-				cout << "方塊" << 'J' ;
-			else if (1 + k % 13 == 12)
-				cout << "方塊" << 'Q' ;
-			else if (1 + k % 13 == 13)
-				cout << "方塊" << 'K' ;
-			else
-				cout << "方塊" << 1 + k % 13 ;
-			break;
+		int k = rand() % 52;
+		int temp = deck[i];
+		deck[i] = deck[k];
+		deck[k] = temp;
 	}
-	if (1 + k % 13 == 11|| 1 + k % 13 == 12|| 1 + k % 13 == 13)
-		*index += 0.5;
-	else	
-		*index += 1 + k % 13;
+	char enter;
+	double point1 = 0;
+	int i = 0;
+	cout << suits[deck[i] / 13] << ranks[deck[i] % 13] << endl;
+	double point[13] = { 1,2,3,4,5,6,7,8,9,10,0.5,0.5,0.5};
+	cout << point1 + point[deck[i] % 13] << endl;
+	
+	system("pause");
+	return 0;
 }
-```
-##會抽到重複的
