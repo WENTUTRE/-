@@ -9,7 +9,6 @@ int num = 0;
 
 void drawcard(vector<int> &deck)
 {
-	
 	srand((unsigned)time(NULL));
 	for (int i = 0; i < 52; i++)
 	{
@@ -42,13 +41,32 @@ int main()
 	player p2("Alice");
 
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		p1.setCard(Card(deck));
-		p1.display();
+		p1.getPoint();
 
-		p2.setCard(Card(deck));
-		p2.display();
+		if (p2.action())
+		{
+			p2.setCard(Card(deck));
+			p2.display();
+		}
+		else continue;
+
+		if (p2.overflow())
+		{
+			cout << p2.getName() << " lose." << endl;
+			break;
+		}
+
+		if (p1.overflow())
+		{
+			cout << p1.getName() << " lose." << endl;
+			p1.display();
+			break;
+		}
+
+		
 	}
 
 	system("pause");
