@@ -22,7 +22,8 @@ public:
 	string getName();
 	double getPoint();
 	void MyCard();
-	//string action();
+	bool action();
+	bool overflow();
 	void compare(player);
 	void display();
 };
