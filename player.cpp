@@ -53,6 +53,15 @@ double player::getPoint()
 	return total;
 }
 
+void player::getCard()
+{
+	string suits[4] = { "黑桃", "方塊", "菱形", "梅花" };
+	string ranks[13] = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
+
+	cout << "莊家:" << endl;
+	cout << suits[deck[amount-1] / 13] << ranks[deck[amount-1] % 13] << endl;
+}
+
 void player::MyCard()
 {
 	string suits[4] = { "黑桃", "方塊", "菱形", "梅花" };
@@ -60,11 +69,18 @@ void player::MyCard()
 
 	for (int i = 0; i < amount; i++)
 		cout << suits[deck[i] / 13] << ranks[deck[i] % 13] << endl;
+	
+	cout << endl;
+}
+
+int player::getAmount()
+{
+	return amount;
 }
 
 bool player::action()
 {
-	cout << "加牌? Y/N";
+	cout << "第" << amount + 1 <<"次,是否加牌? Y/N";
 
 	string a;
 
@@ -89,14 +105,30 @@ bool player::overflow()
 
 void player::compare(player player2)
 {
-	if (getPoint() > player2.getPoint())
-		cout << "Win";
-	else if (getPoint() <= player2.getPoint())
-		cout << "Lose";
+	if (getAmount() == player2.getAmount())
+	{
+		if (getPoint() > player2.getPoint())
+			cout << getName() << "win." << endl;
+		else if (getPoint() <= player2.getPoint())
+			cout << getName() << "lose." << endl;
+	}
+	else if (getAmount() < player2.getAmount())
+	{
+		cout << getName() << "lose." << endl;
+		display();
+		player2.display();
+	}
+	else
+	{ 
+		cout << getName() << "win." << endl;
+		display();
+		player2.display();
+	}
 }
 
 void player::display()
 {
+	cout << getName() << ":" << endl;
 	cout << getPoint() << endl;
 	MyCard();
 }
