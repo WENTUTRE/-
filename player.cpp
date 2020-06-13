@@ -1,4 +1,4 @@
-#include "Header.h"
+#include "player.h"
 #include <iostream>
 using namespace std;
 
@@ -6,12 +6,16 @@ player::player()
 {
 	name = 1;
 	point = 0;
+	vector<int> deck(0);
+	amount = 0;
 }
 
-player::player(string name, int point)
+player::player(string name)
 {
 	this->name = name;
-	this->point = point;
+	point = 0;
+	vector<int> deck(0);
+	amount = 0;
 }
 
 void player::setName(string name)
@@ -19,9 +23,15 @@ void player::setName(string name)
 	this->name = name;
 }
 
-void player::setPoint(int point)
+void player::setPoint(double point)
 {
 	this->point = point;
+}
+
+void player::setCard(int value)
+{
+	deck.push_back(value);
+	amount++;
 }
 
 string player::getName()
@@ -29,12 +39,30 @@ string player::getName()
 	return name;
 }
 
-int player::getPoint()
+double player::getPoint()
 {
-	return point;
+	double total = 0;
+	double point[13] = { 1,2,3,4,5,6,7,8,9,10,0.5,0.5,0.5 };
+	for (int i = 0; i < amount; i++)
+	{
+		total += point[deck[i] % 13];
+	}
+
+	setPoint(total);
+
+	return total;
 }
 
-string player::action()
+void player::MyCard()
+{
+	string suits[4] = { "桃", "方", "菱", "梅" };
+	string ranks[13] = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
+
+	for (int i = 0; i < amount; i++)
+		cout << suits[deck[i] / 13] << ranks[deck[i] % 13] << endl;
+}
+
+/*string player::action()
 {
 	cout << "加牌?";
 
@@ -49,11 +77,17 @@ string player::action()
 	else
 		cout << "";
 }
-
+*/
 void player::compare(player player2)
 {
 	if (getPoint() > player2.getPoint())
 		cout << "Win";
 	else if (getPoint() <= player2.getPoint())
 		cout << "Lose";
+}
+
+void player::display()
+{
+	cout << getPoint() << endl;
+	MyCard();
 }
