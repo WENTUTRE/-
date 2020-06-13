@@ -55,29 +55,38 @@ double player::getPoint()
 
 void player::MyCard()
 {
-	string suits[4] = { "桃", "方", "菱", "梅" };
+	string suits[4] = { "黑桃", "方塊", "菱形", "梅花" };
 	string ranks[13] = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
 
 	for (int i = 0; i < amount; i++)
 		cout << suits[deck[i] / 13] << ranks[deck[i] % 13] << endl;
 }
 
-/*string player::action()
+bool player::action()
 {
-	cout << "加牌?";
+	cout << "加牌? Y/N";
 
 	string a;
 
 	cin >> a;
 
 	if (a == "Y")
-		;
+		return 1;
 	else if (a == "N")
-		;
+		return 0;
 	else
-		cout << "";
+		cout << "try again." << endl;
+		return action();
 }
-*/
+
+bool player::overflow()
+{
+	if (getPoint() > 10.5)
+		return 1;
+	else
+		return 0;
+}
+
 void player::compare(player player2)
 {
 	if (getPoint() > player2.getPoint())
