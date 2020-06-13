@@ -21,6 +21,8 @@ public:
 	void setCard(int);
 	string getName();
 	double getPoint();
+	void getCard();
+	int getAmount();
 	void MyCard();
 	bool action();
 	bool overflow();
