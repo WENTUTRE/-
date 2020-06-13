@@ -9,6 +9,7 @@ int num = 0;
 
 void drawcard(vector<int> &deck)
 {
+	
 	srand((unsigned)time(NULL));
 	for (int i = 0; i < 52; i++)
 	{
@@ -30,44 +31,53 @@ int Card(vector<int> &deck)
 int main()
 {
 	vector<int> deck(52);
+	string name;
 
 	for (int i = 0; i < 52; i++)
 		deck[i] = i;
 
 	drawcard(deck);
-	
 
-	player p1("莊家");
-	player p2("Alice");
+	cout << "Your player name is?" << endl;
+	cin >> name;
 
+	player p1(name);
+	player p2("莊家");
 
-	for (int i = 0; i < 5; i++)
+	p2.setCard(Card(deck));//first round
+	p1.setCard(Card(deck));
+	p1.display();
+
+	for (int i = 0; i < 4; i++)//second~
 	{
-		p1.setCard(Card(deck));
-		p1.getPoint();
+		p2.setCard(Card(deck));
+		p2.getPoint();
+		p2.getCard();
 
-		if (p2.action())
+		if (p1.action())
 		{
-			p2.setCard(Card(deck));
-			p2.display();
+			p1.setCard(Card(deck));
+			p1.display();
 		}
 		else continue;
 
-		if (p2.overflow())
-		{
-			cout << p2.getName() << " lose." << endl;
-			break;
-		}
-
 		if (p1.overflow())
-		{
-			cout << p1.getName() << " lose." << endl;
-			p1.display();
 			break;
-		}
-
-		
+		if (p2.overflow())
+			break;
 	}
+
+	if (p1.overflow())
+	{
+		cout << p1.getName() << " lose." << endl;
+		p2.display();
+	}
+	else if (p2.overflow())
+	{
+		cout << p2.getName() << " lose." << endl;
+		p2.display();
+	}
+	else p1.compare(p2);
 
 	system("pause");
 	return 0;
