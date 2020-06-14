@@ -7,17 +7,14 @@ Card::Card()
 {
 	vector<int> deck(0);
 	amount = 0;
+	point = 0;
 }
 
 Card::Card(int index)
 {
 	vector<int> deck(index);
-	
-}
-
-void Card::setName(string name)
-{
-	this->name = name;
+	amount = 0;
+	point = 0;
 }
 
 void Card::setPoint(double point)//分數
@@ -25,15 +22,10 @@ void Card::setPoint(double point)//分數
 	this->point = point;
 }
 
-void Card::setCard(int value)//拿牌
+void Card::setCard(int value)//拿進手牌中
 {
 	deck.push_back(value);
 	amount++;
-}
-
-string Card::getName()
-{
-	return name;
 }
 
 double Card::getPoint()//得到分數
@@ -77,15 +69,7 @@ int Card::getAmount() //我們手上得排數
 	return amount;
 }
 
-
-
-void Card::display()
-{
-	cout << getName() << ":" << endl;
-	cout << getPoint() << endl;
-	MyCard();
-}
-void Card::drawcard(vector<int> &deck)
+void Card::shuffle(vector<int> &deck) //洗牌
 {
 
 	srand((unsigned)time(NULL));
@@ -99,7 +83,7 @@ void Card::drawcard(vector<int> &deck)
 	
 }
 int num = 0;
-int Card::_Card(vector<int> &deck)
+int Card::drawCard(vector<int> &deck) //抽牌
 {
 	int a = deck[num];
 	num++;
