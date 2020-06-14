@@ -3,30 +3,12 @@
 #include <ctime>
 #include <string> 
 #include "player.h"
+#include "Card.h"
 using namespace std;
 
-int num = 0;
 
-void drawcard(vector<int> &deck)
-{
-	
-	srand((unsigned)time(NULL));
-	for (int i = 0; i < 52; i++)
-	{
-		int k = rand() % 52;
-		int temp = deck[i];
-		deck[i] = deck[k];
-		deck[k] = temp;
-	}
-	
-}
 
-int Card(vector<int> &deck)
-{
-	int a = deck[num];
-	num++;
-	return a;
-}
+
 
 int main()
 {
@@ -36,27 +18,24 @@ int main()
 	for (int i = 0; i < 52; i++)
 		deck[i] = i;
 
-	drawcard(deck);
 
-	cout << "Your player name is?" << endl;
+	cout << "Your player name is?......." ;
 	cin >> name;
-
 	player p1(name);
 	player p2("莊家");
-
-	p2.setCard(Card(deck));//first round
-	p1.setCard(Card(deck));
+	p1.drawcard(deck);
+	p2.setCard(p1._Card(deck));
+	p1.setCard(p1._Card(deck));
 	p1.display();
-
 	for (int i = 0; i < 4; i++)//second~
 	{
-		p2.setCard(Card(deck));
+		p2.setCard(p1._Card(deck));
 		p2.getPoint();
 		p2.getCard();
 
 		if (p1.action())
 		{
-			p1.setCard(Card(deck));
+			p1.setCard(p1._Card(deck));
 			p1.display();
 		}
 		else continue;
@@ -66,7 +45,6 @@ int main()
 		if (p2.overflow())
 			break;
 	}
-
 	if (p1.overflow())
 	{
 		cout << p1.getName() << " lose." << endl;
