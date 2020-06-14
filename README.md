@@ -1,22 +1,45 @@
-# 十點半
+```
+#include <iostream>
+#include <vector>
+#include <ctime>
+#include <string> 
+using namespace std;
+void drawcard(int *i)
+{
+	string suits[4] = { "梅花", "紅心", "方塊", "黑桃" };
+	string ranks[13] = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
+vector<int> deck(52);
 
-一種賭博遊戲,玩法類似二十一點,但規則更簡單
 
-### 規則
+	for (int i = 0; i < 52; i++)
+		deck[i] = i;
 
-A ~ 10 的牌計為1~10點,JQK計為0.5點
-超過10.5點就輸了,抽到5張還沒超過10.5點直接勝利,再來跟莊家比大小(同點莊家贏)
 
-1. 其中一名玩家做莊家
-2. 開始時每個人抽一張牌作為底牌,底牌只有自己能看
-3. 玩家依順序輪流要牌,要得的牌要打開給所有人看
+	srand(time(0));
+	for (int i = 0; i < 52; i++)
+	{
+		int k = rand() % 52;
+		int temp = deck[i];
+		deck[i] = deck[k];
+		deck[k] = temp;
+	}
+	char enter;
+	double point1 = 0;
+	
+	cout << suits[deck[*i] / 13] << ranks[deck[*i] % 13] << endl;
+	double point[13] = { 1,2,3,4,5,6,7,8,9,10,0.5,0.5,0.5};
+	cout << point1 + point[deck[*i] % 13] << endl;
+	*i+=1;
+}
 
-### 進度
+int main()
+{
+	int i = 0;
+	drawcard(&i);
+	
+	drawcard(&i);
+	system("pause");
+	return 0;
+}
 
-- Player
-    - [ ] Poke
-        - [ ] `drawCard`
-        - [ ] `printCard`
-        - [ ] `printPoint`
-    - [ ] `getMoney`
-
+```
