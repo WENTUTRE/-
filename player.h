@@ -1,4 +1,3 @@
-
 #ifndef player_H
 #define player_H
 #include "Card.h"
@@ -10,7 +9,6 @@ class player:public Card
 {
 private:
 	string name;
-	double point;
 	vector<int> deck;
 	int amount;
 
