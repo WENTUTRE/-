@@ -1,11 +1,12 @@
+
 #ifndef player_H
 #define player_H
-
+#include "Card.h"
 #include <string>
 #include <vector>
 using namespace std;
 
-class player
+class player:public Card
 {
 private:
 	string name;
@@ -15,15 +16,9 @@ private:
 
 public:
 	player();
-	player(string);
+	player(string name);
 	void setName(string);
-	void setPoint(double);
-	void setCard(int);
 	string getName();
-	double getPoint();
-	void getCard();
-	int getAmount();
-	void MyCard();
 	bool action();
 	bool overflow();
 	void compare(player);
