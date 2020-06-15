@@ -13,10 +13,29 @@ A ~ 10 的牌計為1~10點,JQK計為0.5點
 
 ### 進度
 
+- Card
+    - [ ] rank
+    - [ ] suit
+    - [ ] point
+
+- Poker 
+    - [ ] 52 Card in vector 
+        - [ ] cardCount
+    - [ ] `shuffle`
+    - [ ] `drawCard`
+
 - Player
-    - [ ] Poke
-        - [ ] `drawCard`
-        - [ ] `printCard`
-        - [ ] `printPoint`
+    - [ ] name
+    - [ ] money
+    - [ ] 1 ~ 5 Card in vector
+        - [ ] cardCount
+    - [ ] `printCard`
+    - [ ] `getPoint`
+    - [ ] `drawCard`
+        - [ ] `overflow`
     - [ ] `getMoney`
 
+- main
+    - [ ] `compare`
+        - [ ] `setMoney`
+    
