@@ -3,10 +3,10 @@
 Card::Card()
 {
 }
-Card::Card(string rank, string suit, double point)
+Card::Card(const string &suit, const string &rank, const double &point)
 {
-	this->rank = rank;
 	this->suit = suit;
+	this->rank = rank;
 	this->point = point;
 }
 Card::~Card()
