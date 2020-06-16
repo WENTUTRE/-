@@ -13,6 +13,10 @@ public:
 	Card();
 	Card(const string &, const string &, const double &);
 	~Card();
+
+	string getRank();
+	string getSuit();
+	double getPoint();
 };
 
 #endif

@@ -15,9 +15,11 @@ A ~ 10 的牌計為1~10點,JQK計為0.5點
 
 - Card
     - [x] rank
+        - [x] getRank
     - [x] suit
+        - [x] getSuit
     - [x] point
-
+        - [x] getPoint
 - Poker 
     - [x] 52 Card in vector 
         - [x] cardCount
@@ -25,14 +27,15 @@ A ~ 10 的牌計為1~10點,JQK計為0.5點
     - [x] `drawCard`
 
 - Player
-    - [ ] name
-    - [ ] money
-    - [ ] 1 ~ 5 Card in vector
-        - [ ] cardCount
-    - [ ] `printCard`
-    - [ ] `printPoint`
-    - [ ] `drawCard`
-        - [ ] `overflow`
+    - [x] name
+        - [x] `setName`
+        - [x] `getName`
+    - [x] 1 ~ 5 Card in vector
+        - [x] cardCount
+    - [x] `printCard`
+    - [x] `drawCard`
+        - [x] `getPoint`
+        - [x] `overflow`
     - [ ] `getMoney`
 
 - main
