@@ -10,7 +10,8 @@ class Player : public Card
 private:
 	string name;
 	vector<Card> hand{Card(), Card(), Card(), Card(), Card()};
-	int cardCount;
+	int cardCount = 0;
+	int money = 1000;
 
 public:
 	Player();
@@ -22,6 +23,6 @@ public:
 	double getPoint();	  // 回傳點數
 	void printCard();	  // 顯示手牌與點得
 	void setName(string); // 設定姓名
-	void setMoney(int);      // 設定金錢
+	void setMoney(int);	  // 設定金錢
 };
 #endif

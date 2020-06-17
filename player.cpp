@@ -23,6 +23,7 @@ int Player::getCardCount()          // 回傳張數
 }
 int Player::getMoney()              // 回傳剩餘的錢
 {
+	return money;
 }
 string Player::getName()            // 回傳姓名
 {
@@ -40,7 +41,7 @@ void Player::printCard()            // 顯示手牌與點得
 	cout << getName() << ":" << endl;
 	for (int i = 0; i < cardCount; i++)
 	{
-		cout << i + 1 << ". " << setw(9) << hand[i].getSuit() << " " << hand[i].getRank() << endl;
+		cout << i + 1 << ". " << hand[i].getSuit() << " " << hand[i].getRank() << endl;
 	}
 	cout << "Point: " << getPoint() << endl;
 }
@@ -48,7 +49,7 @@ void Player::setName(string name)   // 設定姓名
 {
 	this->name = name;
 }
-void Player::setMoney(int)             // 設定金錢
+void Player::setMoney(int m)        // 設定金錢
 {
-
+	money += m;
 }
