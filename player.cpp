@@ -1,61 +1,54 @@
-#include "player.h"
-
+#include "Player.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 using namespace std;
 
-player::player()
+Player::Player()
 {
 }
-
-player::player(string name)
+Player::Player(string name)
 {
 	this->name = name;
 	cardCount = 0;
 }
-
-void player::setName(string name)
+void Player::drawCard(Card newCard) // 抽牌 + 顯示
 {
-	this->name = name;
+	hand[cardCount++] = newCard;
+	(*this).printCard();
 }
-
-string player::getName() //得到名字
+int Player::getCardCount()          // 回傳張數
+{
+	return cardCount;
+}
+int Player::getMoney()              // 回傳剩餘的錢
+{
+}
+string Player::getName()            // 回傳姓名
 {
 	return name;
 }
-
-bool player::overflow() //是否爆
-{
-	if ((getPoint() > 10.5))
-		return 1;
-	else
-		return 0;
-}
-
-void player::printCard() //顯示得點與手牌
-{
-	cout << getName() << ":" << endl;
-	for (int i = 0; i < cardCount; i++)
-	{
-		cout << i + 1 << ". " << setw(10) << hand[i].getSuit() << " " << hand[i].getRank() << endl;
-	}
-	cout << "Point: " << getPoint() << endl;
-}
-
-void player::drawCard(Card newCard) //抽牌
-{
-	hand[++cardCount] = newCard;
-}
-
-int player::getMoney() // 回傳剩餘的錢
-{
-}
-
-double player::getPoint() // 回傳點數
+double Player::getPoint()           // 回傳點數
 {
 	double point = 0;
 	for (int i = 0; i < cardCount; i++)
 		point += hand[i].getPoint();
 	return point;
+}
+void Player::printCard()            // 顯示手牌與點得
+{
+	cout << getName() << ":" << endl;
+	for (int i = 0; i < cardCount; i++)
+	{
+		cout << i + 1 << ". " << setw(9) << hand[i].getSuit() << " " << hand[i].getRank() << endl;
+	}
+	cout << "Point: " << getPoint() << endl;
+}
+void Player::setName(string name)   // 設定姓名
+{
+	this->name = name;
+}
+void Player::setMoney(int)             // 設定金錢
+{
+
 }

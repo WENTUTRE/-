@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std;
 
-class player : public Card
+class Player : public Card
 {
 private:
 	string name;
@@ -13,14 +13,15 @@ private:
 	int cardCount;
 
 public:
-	player();
-	player(string name);
-	void setName(string);
-	string getName();	 // 回傳姓名
-	bool overflow();	 // 檢查是否爆牌
-	void drawCard(Card); // 抽卡
-	void printCard();	 // 印牌
-	int getMoney();		 // 回傳剩餘的錢
-	double getPoint();	 // 回傳點數
+	Player();
+	Player(string name);
+	void drawCard(Card);  // 抽牌 + 顯示
+	int getCardCount();	  // 回傳張數
+	int getMoney();		  // 回傳剩餘金錢
+	string getName();	  // 回傳姓名
+	double getPoint();	  // 回傳點數
+	void printCard();	  // 顯示手牌與點得
+	void setName(string); // 設定姓名
+	void setMoney(int);      // 設定金錢
 };
 #endif

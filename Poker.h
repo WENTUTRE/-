@@ -67,7 +67,9 @@ private:
 
 public:
     Poker();
-    void shuffle();  // 洗牌
-    Card drawCard(); // 抽牌
+    Card drawCard();       // 抽牌
+    int getCardCount();    // 剩餘張數
+    void resetCardCount(); // 重製牌堆
+    void shuffle();        // 洗牌
 };
 #endif

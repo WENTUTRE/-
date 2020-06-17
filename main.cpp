@@ -2,58 +2,83 @@
 #include <vector>
 #include <ctime>
 #include <string>
-#include "player.h"
-#include "Card.h"
+#include "Player.h"
+#include "Poker.h"
 using namespace std;
+
+//*****************************************
 
 int main()
 {
-	vector<int> deck(52);
+	bool draw, start;
+	Poker pool;
 	string name;
 
-	for (int i = 0; i < 52; i++)
-		deck[i] = i;
-
-	cout << "Your player name is?.......";
+	cout << "Welcome to Ten&Half game." << endl;
+	cout << "Your player name is?......." << endl;
+	cout << "Name: ";
 	cin >> name;
-	player p1(name);
-	player p2("莊家");
-	p1.drawcard(deck);
-	p2.setCard(p1._Card(deck));
-	p1.setCard(p1._Card(deck));
-	p1.display();
-	for (int i = 0; i < 4; i++) //second~
-	{
-		p2.setCard(p1._Card(deck));
-		p2.getPoint();
-		p2.getCard();
+	cout << endl;
+	cout << "Ready to start the game?  (Enter 1 to Start , 0 to exit)" << endl;
+	cout << "Enter: ";
+	cin >> start;
+	cout << '\n'
+		 << '\n';
 
-		if (p1.action())
+	//-----------------------------------------------------------------
+
+	while (start)
+	{
+		pool.shuffle();
+		Player p1(name);
+		Player p2("Dealer");
+
+		p1.drawCard(pool.drawCard());
+		p2.drawCard(pool.drawCard());
+
+		cout << "Keep draw or not?  (Enter 1 to draw one , 0 to pass)" << endl;
+		cin >> draw;
+		while (draw) // 1繼續抽 0停止
 		{
-			p1.setCard(p1._Card(deck));
-			p1.display();
+			p1.drawCard(pool.drawCard());
+			cout << endl;
+			if ((p1.getPoint() > 10.5) || (p1.getCardCount() == 5))
+				goto END;
+			cout << "Keep draw or not?  (Enter 1 to draw one , 0 to pass)" << endl;
+			cout << "Enter: ";
+			cin >> draw;
+			cout << endl;
+		}
+
+		while ((p2.getPoint() < 6) && p1.getPoint() < 10.5)
+		{
+			p2.drawCard(pool.drawCard());
+			cout << endl;
+			if ((p2.getPoint() > 10.5) || (p2.getCardCount() == 5))
+				goto END;
+		}
+	END:
+		if ((p1.getPoint() > 10.5) || (p2.getCardCount() == 5) || (p1.getPoint() < p2.getPoint())) // p2 win
+		{
+			cout << "Dealer WIN" << endl;
+			p1.setMoney(-10);
+			p2.setMoney(10);
 		}
 		else
-			continue;
+		{
+			cout << p1.getName() << " WIN" << endl;
+			p1.setMoney(10);
+			p2.setMoney(-10);
+		}
 
-		if (p1.overflow())
-			break;
-		if (p2.overflow())
-			break;
+		cout << "Ready to start the game again?  (Enter 1 to Start , 0 to exit)" << endl;
+		cout << "Enter: ";
+		cin >> start;
+		cout << '\n'
+			 << '\n';
 	}
-	if (p1.overflow())
-	{
-		cout << p1.getName() << " lose." << endl;
-		p2.display();
-	}
-	else if (p2.overflow())
-	{
-		cout << p2.getName() << " lose." << endl;
-		p2.display();
-	}
-	else
-		p1.compare(p2);
 
-	system("pause");
+	//-----------------------------------------------------------------
+
 	return 0;
 }
