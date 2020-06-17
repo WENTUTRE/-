@@ -44,3 +44,4 @@ A ~ 10 的牌計為1~10點,JQK計為0.5點
     
     ---------------------------------------
 
+![image](https://github.com/WENTUTRE/10-30/blob/master/screen_shot.png)
