@@ -36,10 +36,11 @@ A ~ 10 的牌計為1~10點,JQK計為0.5點
     - [x] `drawCard`
         - [x] `getPoint`
         - [x] `overflow`
-    - [ ] `getMoney`
+    - [x] `getMoney`
 
 - main
-    - [ ] `compare`
-        - [ ] `setMoney`
+    - [x] compare
+        - [x] `setMoney`
     
     ---------------------------------------
+
